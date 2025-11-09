@@ -1,0 +1,357 @@
+# Slash Commands Configuration for Advanced Multi-Agent AI Framework
+# Platform-agnostic configuration for slash-commands and multi-agent coordination.
+# SPARC and other named techniques referenced below are OPTIONAL conceptual mappings
+# to help implementers understand intent; they are NOT hard requirements.
+
+
+commands:
+  # Project Management Commands
+  plan:
+    enabled: true
+    aliases: [p, project, roadmap]
+    description: "Generate comprehensive project task maps with phases and dependencies"
+    category: "project-management"
+    permissions: [read, edit, command]
+    sparc_alignment: "specification"
+    implementation: "workflow-template-prompting, boomerang-task-delegation"
+    
+  scope:
+    enabled: true
+    aliases: [s, analyze, investigate]
+    description: "Deep analysis of GitHub issues for comprehensive scope documents"
+    category: "project-management"
+    permissions: [read, browser, mcp]
+    sparc_alignment: "specification, architecture"
+    implementation: "issue-decomposition-analysis, codebase-impact-mapping, hypothetical-scenario-modeling"
+    
+  assign:
+    enabled: true
+    aliases: [a, delegate, task]
+    description: "Delegate tasks to appropriate specialist agents with structured prompts"
+    category: "project-management"
+    permissions: [read, edit, command, mcp]
+    sparc_alignment: "specification"
+    implementation: "boomerang-task-delegation, instructed-prompting, template-prompting"
+    
+  status:
+    enabled: true
+    aliases: [status, progress, state]
+    description: "Show current project state and task progress"
+    category: "utility"
+    permissions: [read]
+    sparc_alignment: "completion"
+    implementation: "state-management, traceability-documentation"
+    
+  review:
+    enabled: true
+    aliases: [r, code-review, cr]
+    description: "Simulated code review workflow with multi-agent feedback"
+    category: "development"
+    permissions: [read, edit, command, mcp]
+    sparc_alignment: "refinement, completion"
+    implementation: "multi-perspective-analysis, structured-commit-workflow"
+    
+  merge:
+    enabled: true
+    aliases: [m, pr, merge-request]
+    description: "Automated PR merging with validation and quality gates"
+    category: "development"
+    permissions: [read, edit, command, browser]
+    sparc_alignment: "completion"
+    implementation: "structured-commit-workflow, semantic-guardrails"
+
+  # Architecture Commands
+  design:
+    enabled: true
+    aliases: [d, architect, system-design]
+    description: "Generate system architecture documents and design specifications"
+    category: "architecture"
+    permissions: [read, edit, browser]
+    sparc_alignment: "architecture"
+    implementation: "visual-documentation-generation, tree-of-thoughts, step-back-prompting"
+    
+  diagram:
+    enabled: true
+    aliases: [diag, flowchart, viz]
+    description: "Create visual documentation and architectural diagrams"
+    category: "architecture"
+    permissions: [read, edit, browser]
+    sparc_alignment: "architecture"
+    implementation: "visual-documentation-generation"
+    
+  pattern:
+    enabled: true
+    aliases: [pat, design-pattern, dp]
+    description: "Apply design patterns analysis and architectural best practices"
+    category: "architecture"
+    permissions: [read, edit]
+    sparc_alignment: "architecture"
+    implementation: "language-construct-modeling"
+    
+  validate:
+    enabled: true
+    aliases: [v, validate, verify]
+    description: "Architecture validation and compliance checking"
+    category: "architecture"
+    permissions: [read, edit, browser]
+    sparc_alignment: "architecture, refinement"
+    implementation: "step-back-prompting, comprehensive-code-analysis"
+
+  # Development Commands
+  build:
+    enabled: true
+    aliases: [b, deploy, release]
+    description: "Execute build and deployment workflows with quality gates"
+    category: "development"
+    permissions: [read, edit, command, browser]
+    sparc_alignment: "pseudocode, refinement, completion"
+    implementation: "automated-development-workflows, semantic-guardrails"
+    
+  test:
+    enabled: true
+    aliases: [t, test-suite, validate]
+    description: "Run comprehensive test suites with quality validation"
+    category: "development"
+    permissions: [read, edit, command, browser]
+    sparc_alignment: "refinement, completion"
+    implementation: "test-based-iterative-flow"
+    
+  refactor:
+    enabled: true
+    aliases: [r, refactor, improve]
+    description: "Code quality improvement and optimization"
+    category: "development"
+    permissions: [read, edit, command]
+    sparc_alignment: "refinement, completion"
+    implementation: "modular-code-generation, cross-file-code-completion-prompting"
+    
+  optimize:
+    enabled: true
+    aliases: [o, perf, optimize]
+    description: "Performance optimization and resource efficiency improvements"
+    category: "development"
+    permissions: [read, edit, command]
+    sparc_alignment: "refinement, completion"
+    implementation: "program-of-thoughts, language-construct-modeling"
+    
+  debug:
+    enabled: true
+    aliases: [dbg, debug, troubleshoot]
+    description: "Systematic debugging workflow with root cause analysis"
+    category: "development"
+    permissions: [read, edit, command, browser]
+    sparc_alignment: "refinement, completion"
+    implementation: "five-whys-prompting, chain-of-verification, logic-mcp"
+
+  # Research Commands
+  research:
+    enabled: true
+    aliases: [r, study, investigate]
+    description: "Comprehensive research synthesis with multi-perspective analysis"
+    category: "research"
+    permissions: [read, browser, mcp]
+    sparc_alignment: "specification"
+    implementation: "multi-perspective-analysis, systematic-literature-review, evidence-synthesis"
+    
+  analyze:
+    enabled: true
+    aliases: [a, analysis, examine]
+    description: "Multi-perspective analysis and competitive intelligence gathering"
+    category: "research"
+    permissions: [read, browser, mcp]
+    sparc_alignment: "specification"
+    implementation: "multi-perspective-analysis, competitive-intelligence-gathering"
+    
+  compare:
+    enabled: true
+    aliases: [c, comp, benchmark]
+    description: "Competitive analysis and market research"
+    category: "research"
+    permissions: [read, browser, mcp]
+    sparc_alignment: "specification"
+    implementation: "competitive-intelligence-gathering"
+    
+  synthesis:
+    enabled: true
+    aliases: [syn, integrate, combine]
+    description: "Knowledge integration and evidence synthesis"
+    category: "research"
+    permissions: [read, edit, mcp]
+    sparc_alignment: "specification"
+    implementation: "evidence-synthesis"
+
+  # Framework Commands
+  mode:
+    enabled: true
+    aliases: [m, switch, agent]
+    description: "Switch between specialized AI agent modes"
+    category: "framework"
+    permissions: [read, edit, command]
+    sparc_alignment: "specification"
+    implementation: "agent-configuration-management"
+    
+  config:
+    enabled: true
+    aliases: [cfg, settings, configure]
+    description: "Framework configuration management and customization"
+    category: "framework"
+    permissions: [read, edit]
+    sparc_alignment: "specification"
+    implementation: "agent-configuration-management"
+    
+  template:
+    enabled: true
+    aliases: [tmp, prompt-template]
+    description: "Generate prompt templates for consistent task execution"
+    category: "framework"
+    permissions: [read, edit]
+    sparc_alignment: "specification"
+    implementation: "template-prompting"
+    
+  workflow:
+    enabled: true
+    aliases: [w, optimize, process]
+    description: "Analyze and optimize current workflows for efficiency"
+    category: "framework"
+    permissions: [read, edit, command]
+    sparc_alignment: "specification"
+    implementation: "flow-engineering"
+
+  # Utility Commands
+  help:
+    enabled: true
+    aliases: [h, ?]
+    description: "Context-aware help system with command discovery and usage examples"
+    category: "utility"
+    permissions: []
+    sparc_alignment: "specification"
+    implementation: "context-priming"
+    
+  docs:
+    enabled: true
+    aliases: [d, documentation, manual]
+    description: "Quick access to framework documentation and guides"
+    category: "utility"
+    permissions: [read, browser]
+    sparc_alignment: "specification"
+    implementation: "context-priming"
+    
+  logs:
+    enabled: true
+    aliases: [log, history, activity]
+    description: "View activity logs and execution history for debugging and audit"
+    category: "utility"
+    permissions: [read]
+    sparc_alignment: "completion"
+    implementation: "traceability-documentation"
+    
+  export:
+    enabled: true
+    aliases: [exp, backup, export-data]
+    description: "Export project data, configurations, and knowledge bases for backup and migration"
+    category: "utility"
+    permissions: [read, edit, command]
+    sparc_alignment: "completion"
+    implementation: "traceability-documentation"
+
+# Mode-Specific Extensions
+# These mappings are OPTIONAL per-mode specializations for slash-commands.
+# They illustrate how implementations MAY specialize commands per mode.
+mode_extensions:
+  architect:
+    commands:
+      diagram:
+        description: "Generate architectural diagrams"
+        aliases: [arch-diagram, sys-viz]
+        sparc_alignment: "visual-documentation-generation"
+      pattern:
+        description: "Apply design patterns analysis"
+        aliases: [dp-analysis, pattern-review]
+        sparc_alignment: "language-construct-modeling"
+      validate:
+        description: "Architecture validation and review"
+        aliases: [arch-review, compliance-check]
+        sparc_alignment: "step-back-prompting, comprehensive-code-analysis"
+
+  builder:
+    commands:
+      refactor:
+        description: "Code quality improvement"
+        aliases: [code-improve, quality-enhance]
+        sparc_alignment: "modular-code-generation, cross-file-code-completion-prompting"
+      optimize:
+        description: "Performance optimization"
+        aliases: [perf-tune, speed-improve]
+        sparc_alignment: "program-of-thoughts, language-construct-modeling"
+      test:
+        description: "Comprehensive test execution"
+        aliases: [test-suite, validate-code]
+        sparc_alignment: "test-based-iterative-flow"
+
+  debug:
+    commands:
+      trace:
+        description: "Execution flow tracing"
+        aliases: [flow-trace, exec-debug]
+        sparc_alignment: "five-whys-prompting"
+      profile:
+        description: "Performance profiling"
+        aliases: [perf-profile, bottleneck-analysis]
+        sparc_alignment: "comprehensive-code-analysis"
+      fix:
+        description: "Automated fix application"
+        aliases: [auto-fix, apply-patch]
+        sparc_alignment: "chain-of-verification"
+
+  research:
+    commands:
+      compare:
+        description: "Competitive analysis"
+        aliases: [comp-analysis, market-research]
+        sparc_alignment: "competitive-intelligence-gathering"
+      synthesis:
+        description: "Knowledge integration"
+        aliases: [knowledge-integration, evidence-synth]
+        sparc_alignment: "evidence-synthesis"
+      literature:
+        description: "Academic research review"
+        aliases: [academic-review, paper-analysis]
+        sparc_alignment: "systematic-literature-review"
+
+# Command Chaining Support
+command_chains:
+  enabled: true
+  examples:
+    - chain: "plan -> assign -> build -> test -> deploy"
+      description: "Complete development workflow"
+    - chain: "scope -> research -> analyze -> synthesis"
+      description: "Research workflow"
+    - chain: "debug -> trace -> fix -> validate"
+      description: "Debugging workflow"
+
+# Customization Options
+customization:
+  aliases:
+    enabled: true
+    user_defined: true
+  shortcuts:
+    enabled: true
+    user_defined: true
+  workflows:
+    enabled: true
+    user_defined: true
+
+# Integration Points
+# The following flags are OPTIONAL examples for implementers.
+# They illustrate how integrations MAY be wired; they are not required defaults.
+integration:
+  github:
+    enabled: true
+    auto_issues: true        # Example: automatically open issues when appropriate
+    auto_pr: true            # Example: automatically open PRs for suggested changes
+  mcp_servers:
+    enabled: true
+    auto_discovery: true     # Example: discover available MCP servers/tools
+  documentation:
+    auto_generation: true    # Example: generate docs from command definitions
+    context_preservation: true

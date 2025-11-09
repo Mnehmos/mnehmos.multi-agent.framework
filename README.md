@@ -1,60 +1,101 @@
-# Advanced Multi-Agent AI Framework - Professional Team Coordination with 80+ Prompt Engineering Techniques
+# Advanced Multi-Agent AI Framework
 
-> **Transform your AI development workflow with a production-ready multi-agent framework combining advanced prompt engineering, structured coordination, and professional team management.**
+A structured, production-ready multi-agent framework for coordinating specialized AI modes using clear contracts, one-tool-per-message execution, and traceable task flows.
 
-**🔗 Quick Links:** [Kilo Code Platform](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code) | [Master Prompt Engineering Techniques](https://mnehmos.github.io/Prompt-Engineering/index.html)
-## 🙏 Support This Work
+- Supports multi-mode agent teams (Orchestrator, Architect, Planner, Code, Debug, etc.)
+- Enforces scoped edits, deterministic workflows, and boomerang-style task returns
+- Works across any compatible AI runtime or platform (not tied to a single vendor)
+- Ships with reusable templates for modes, instructions, and slash-commands
 
-If this project helps you build better AI systems and you'd like to show your appreciation:
-
-- **Buy Me a Coffee**: https://buymeacoffee.com/mnehmos
+**🔗 Quick Links:** [`templates/`](templates/) · [`meet-the-team/`](meet-the-team/) · [`slash-commands/`](slash-commands/) · [`AGENTS.md`](AGENTS.md) *(if present)*
 
 ## 🎯 What This Framework Delivers
 
 **Professional AI Team Management** - Deploy specialized AI agents with enterprise-grade coordination, advanced prompt engineering, and systematic workflow automation for superior development outcomes.
 
 ### Key Benefits
-- **⚡ 80+ Advanced Prompt Engineering Techniques** - Integrated cutting-edge methods for superior AI performance
-- **🔄 Multi-Agent Coordination** - SPARC framework with agentic boomerang pattern for reliable task delegation
-- **📈 Performance Optimization** - Token-efficient operations with "scalpel, not hammer" resource management
-- **🏗️ Production-Ready Architecture** - Structured documentation, traceability, and enterprise workflow patterns
-- **🛠️ Framework Extensibility** - Customizable modes and prompt engineering technique integration
 
-## 🚀 Quick Start Guide
+- **Structured multi-agent coordination** using clear Orchestrator / Worker / Reviewer roles
+- **Boomerang-style task returns** for traceable, auditable workflows
+- **Token-aware, minimal-diff editing** patterns for safe automated changes
+- **Production-oriented architecture** with explicit scopes, contracts, and documentation
+- **Extensible templates** for modes, instructions, and slash-commands without locking into specific tools
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- **Kilo Code AI Platform** (recommended) or compatible AI assistant with custom modes
-- Basic understanding of multi-agent AI systems
-- Project requiring systematic AI team coordination
 
-### Installation & Setup
+Use with any agentic runtime that supports:
 
-**1. Clone the Framework**
+- Multiple modes / roles (e.g., Orchestrator, Planner, Code, Debug)
+- One-tool-per-message execution
+- Custom/system instructions per mode
+- File-scoped, deterministic edits
+
+Examples (non-exclusive):
+
+- Roo / Responses-style runtimes
+- Kilo Code
+- Other IDE or API-based agents with similar capabilities
+
+### 1. Clone this repository
+
 ```bash
 git clone https://github.com/Mnehmos/Advanced-Multi-Agent-AI-Framework.git
 cd Advanced-Multi-Agent-AI-Framework
 ```
 
-**2. Configure AI Team Modes**
-```bash
-# Copy configuration templates
-cp templates/custom_modes.yaml ./
-cp templates/custom-instructions-for-all-modes.md ./
-cp templates/enhance-prompt-template.md ./
-```
+### 2. Review core contracts
 
-**3. Deploy to Kilo Code**
-- Open Kilo Code → "Modes" → "Edit Project Modes" or "Global Modes"
-- copy `custom_modes.yaml` configuration from template and paste into kilocode settings
-- Configure custom instructions for all modes by copy and pasting into the Teams settings "Custom Instructions for all Modes"
-- Do the same for enhance prompt template into the prompts tab of the srttings window. 
-- Save and activate framework
+- Global instructions and mode contracts (see [`AGENTS.md`](AGENTS.md) if present)
+- Mode templates in [`templates/custom_modes.yaml`](templates/custom_modes.yaml)
+- Shared instructions in [`templates/custom-instructions-for-all-modes.md`](templates/custom-instructions-for-all-modes.md)
+- Slash command designs in [`slash-commands/`](slash-commands/)
 
-**4. Start Orchestrating**
-- Switch to **Orchestrator Mode**
-- Describe your project requirements
-- Generate Task Map using enhance prompt (✨ button)
-- Let the AI team execute with full coordination
+### 3. Configure your assistant / runtime
+
+Use the sections below ("How to use this as a GitHub Template" and "Compatibility / Requirements") to wire these files into your environment and start orchestrating work via the Orchestrator/Worker/Reviewer pattern.
+
+## 📦 How to use this as a GitHub Template
+
+Use this repository as a starting point for your own multi-agent setup:
+
+1. In GitHub, click "Use this template" on the repository page.
+2. Create your new repository from this template.
+3. In your new repo, keep the structure of:
+   - [`templates/custom_modes.yaml`](templates/custom_modes.yaml)
+   - [`templates/custom-instructions-for-all-modes.md`](templates/custom-instructions-for-all-modes.md)
+   - [`templates/enhance-prompt-template.md`](templates/enhance-prompt-template.md)
+   - [`slash-commands/`](slash-commands/)
+   - [`meet-the-team/`](meet-the-team/)
+   - [`AGENTS.md`](AGENTS.md) *(if present)* to house global contracts.
+4. In your chosen AI platform or runtime:
+   - Load the "custom instructions for all modes" into the global/system instructions.
+   - Load or adapt `custom_modes.yaml` into the platform's mode/multi-agent configuration.
+   - Optionally register slash-commands based on [`slash-commands/`](slash-commands/) to standardize workflows.
+5. Start runs with an Orchestrator-style mode that:
+   - Decomposes work into subtasks,
+   - Assigns Workers with scoped file patterns,
+   - Routes results through a Reviewer when needed.
+
+This keeps the framework portable while preserving the core coordination patterns.
+
+## 🧩 Compatibility / Requirements
+
+This framework is designed to be environment-agnostic. Any runtime is compatible if it supports:
+
+- One-tool-per-message or equivalent atomic tool execution
+- Multiple modes / roles with distinct instructions
+- Ability to enforce:
+  - Workspace paths and file pattern scopes
+  - Deterministic, inspectable steps
+- Support for structured, JSON-like "boomerang" task return payloads
+
+Examples:
+
+- Roo-style / Responses-style orchestrated environments
+- Kilo Code (using custom modes and project/global instructions)
+- Custom in-house agentic runtimes wired to follow the same contracts
 
 ## 🏛️ Framework Architecture
 
@@ -88,28 +129,19 @@ cp templates/enhance-prompt-template.md ./
 ## 🎯 Use Cases & Applications
 
 ### **Enterprise Software Development**
-- Complex application architecture planning
-- Multi-team coordination and workflow automation
-- Advanced code generation with quality assurance
-- Systematic debugging and performance optimization
+- Structured multi-agent assistance for large codebases
+- Automated, scope-safe refactors and reviews
+- Task-mapped execution with clear success criteria
 
-### **AI Research Projects**
-- Literature review and competitive analysis
-- Hypothesis formation and testing workflows
-- Knowledge management and documentation systems
-- Multi-perspective research synthesis
+### **AI / LLM Products**
+- Multi-mode assistants (Ask, Plan, Code, Debug) behind a single interface
+- Repeatable workflows via shared slash-commands
+- Auditable changes for safety and compliance
 
-### **Product Development**
-- User story creation and requirement analysis
-- Feature planning with stakeholder perspective analysis
-- Technical implementation with architectural guidance
-- Quality assurance and testing automation
-
-### **Infrastructure Management**
-- CI/CD pipeline design and automation
-- Security implementation and monitoring
-- Performance optimization and scaling
-- Documentation and knowledge preservation
+### **Internal Tooling & Ops**
+- CI/CD-aligned agent workflows
+- Documentation and knowledge base automation
+- Safe infrastructure and config updates via scoped Workers
 
 ## 🔄 The SPARC + Boomerang Methodology
 
@@ -117,11 +149,12 @@ cp templates/enhance-prompt-template.md ./
 **S**pecification → **P**seudocode → **A**rchitecture → **R**efinement → **C**ompletion
 
 ### Boomerang Task Delegation
+
 1. **Task Creation** - Orchestrator generates structured tasks from project requirements
-2. **Specialist Assignment** - Tasks delegated to most appropriate AI agent
-3. **Advanced Execution** - Specialists apply 80+ prompt engineering techniques
-4. **Quality Integration** - Results validated and integrated into project workflow
-5. **Iterative Improvement** - Continuous optimization through feedback loops
+2. **Specialist Assignment** - Tasks delegated to the most appropriate mode/agent
+3. **Scoped Execution** - Workers operate only within assigned workspace paths and file patterns
+4. **Quality Integration** - Results are validated (optionally via Reviewer) and merged back
+5. **Iterative Improvement** - Feedback loops refine instructions, scopes, and contracts
 
 ## 📊 Performance & Optimization Features
 
@@ -188,33 +221,17 @@ Detailed documentation for each AI specialist:
 - Documentation generation and maintenance
 - Continuous improvement through feedback integration
 
-## 🤝 Community & Support
+## 🤝 Community & Contributions
 
-### **Get Help**
-- **Documentation**: Complete framework guides and tutorials
-- **Issues**: Report bugs or request features via GitHub Issues
-- **Discussions**: Join community discussions for best practices
-- **Professional Support**: Contact for enterprise implementation assistance
-
-### **Support the Project**
-- ⭐ **Star this repository** to help others discover the framework
-- 🤝 **Contribute** improvements and new prompt engineering techniques
-- ☕ **Buy Me a Coffee**: [Support Development](https://buymeacoffee.com/mnehmos)
-- 🔬 **Advanced Research**: Explore [Vario Research](https://mnehmos.github.io/VarioResearch/) for custom AI analysis
+- ⭐ Star this repository if you find the framework useful.
+- 🛠️ Open issues or pull requests to refine contracts, docs, or examples.
+- 🔗 Downstream users: keep this README neutral and add platform-specific details in your own overlays.
 
 ## 📈 Roadmap & Future Development
 
-### **Upcoming Features**
-- Additional prompt engineering technique integration
-- Enhanced multi-modal AI support
-- Extended enterprise workflow patterns
-- Advanced performance analytics and monitoring
-
-### **Research Integration**
-- Latest prompt engineering research incorporation
-- Multi-agent coordination optimization
-- Framework scalability improvements
-- Advanced AI reasoning technique integration
+- Additional mode templates and role contracts
+- More end-to-end examples for different runtimes
+- Extended slash-command libraries for common workflows
 
 ## 📄 License & Attribution
 
@@ -230,14 +247,14 @@ Detailed documentation for each AI specialist:
 - 20+ research papers sources listed here: https://mnehmos.github.io/Prompt-Engineering/sources.html
 ---
 
-## 🎯 Ready to Transform Your AI Development?
+## 🎯 Summary
 
-**Deploy this professional multi-agent AI framework today and experience:**
-- ⚡ **Faster Development** with coordinated AI specialists
-- 🎯 **Higher Quality** through advanced prompt engineering
-- 📈 **Better Outcomes** with systematic workflow management
-- 🏗️ **Scalable Architecture** for growing project needs
+This repository provides a template-friendly, platform-agnostic entrypoint for:
 
-*This framework represents the cutting edge of multi-agent AI coordination, integrating 80+ advanced prompt engineering techniques with proven enterprise workflow patterns for superior development outcomes.*
+- Defining clear multi-agent roles and contracts
+- Running deterministic, auditable, one-tool-per-message workflows
+- Using reusable templates for modes, shared instructions, and slash-commands
 
-**[🚀 Get Started Now](#-quick-start-guide) | [📚 View Documentation](templates/) | [👥 Meet the Team](meet-the-team/)**
+Start from this template, connect it to your preferred agent runtime, and coordinate complex work through the Orchestrator/Worker/Reviewer pattern with scoped, reviewable changes.
+
+[`README.md`](README.md)
