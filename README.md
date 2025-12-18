@@ -28,7 +28,6 @@ A structured, production-ready multi-agent framework for coordinating specialize
 Use with any agentic runtime that supports:
 
 - Multiple modes / roles (e.g., Orchestrator, Planner, Code, Debug)
-- One-tool-per-message execution
 - Custom/system instructions per mode
 - File-scoped, deterministic edits
 
@@ -84,7 +83,7 @@ This keeps the framework portable while preserving the core coordination pattern
 
 This framework is designed to be environment-agnostic. Any runtime is compatible if it supports:
 
-- One-tool-per-message or equivalent atomic tool execution
+- Atomic tool execution
 - Multiple modes / roles with distinct instructions
 - Ability to enforce:
   - Workspace paths and file pattern scopes
@@ -253,7 +252,7 @@ Detailed documentation for each AI specialist:
 This repository provides a template-friendly, platform-agnostic entrypoint for:
 
 - Defining clear multi-agent roles and contracts
-- Running deterministic, auditable, one-tool-per-message workflows
+- Running deterministic, auditable, atomic workflows
 - Using reusable templates for modes, shared instructions, and slash-commands
 
 Start from this template, connect it to your preferred agent runtime, and coordinate complex work through the Orchestrator/TDD pattern with scoped, reviewable changes.
