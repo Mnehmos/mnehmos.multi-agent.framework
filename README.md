@@ -54,6 +54,8 @@ All configuration templates are in [`templates/`](templates/):
 | [custom-instructions-for-all-modes.md](templates/custom-instructions-for-all-modes.md) | Shared agent instructions |
 | [slash-commands.yaml](templates/slash-commands.yaml) | Slash command definitions |
 | [enhance-prompt-template.md](templates/enhance-prompt-template.md) | Prompt enhancement patterns |
+| [tools/](templates/tools/) | **MCP tool instruction add-ons** |
+| [tool-enabled/](templates/tool-enabled/) | **Templates with MCP tools included** |
 
 ## Meet the Team
 
@@ -74,6 +76,62 @@ Standardized commands for common workflows in [`slash-commands/`](slash-commands
 - **Platform Agnostic**: Works with Roo Code, Claude Code, Cursor, Copilot, or custom runtimes
 - **Token Efficient**: Context-aware, minimal-diff editing patterns
 - **Extensible**: Add custom modes, slash commands, and templates
+
+## Mnehmos MCP Ecosystem
+
+Extend your agents with optional MCP (Model Context Protocol) tools. These are **optional add-ons** that provide additional capabilities when installed.
+
+### Available Tools
+
+| Tool | Description | Tools Count |
+|------|-------------|-------------|
+| [**OODA MCP**](https://github.com/Mnehmos/mnehmos.ooda.mcp) | Full computer control (CLI, files, screen, keyboard, mouse, windows) | 62 |
+| [**Synch MCP**](https://github.com/Mnehmos/mnehmos.synch.mcp) | Agent memory bank, context sync, bug tracking, handoffs | ~17 |
+| [**Index Foundry**](https://github.com/Mnehmos/mnehmos.index-foundry.mcp) | RAG indexing, vector search, deployable projects | ~35 |
+| [**arXiv MCP**](https://github.com/Mnehmos/mnehmos.arxiv.mcp) | Academic paper search and PDF content extraction | 4 |
+| [**Trace MCP**](https://github.com/Mnehmos/mnehmos.trace.mcp) | Schema tracing, producer/consumer validation | 11 |
+| [**ChatRPG**](https://github.com/Mnehmos/mnehmos.chatrpg.game) | D&D 5e mechanics for AI Dungeon Masters | 30+ |
+
+### Using MCP Tools with This Framework
+
+1. **Install desired MCP tools** from the repositories above
+2. **Configure in your MCP client** (Claude Desktop, Roo Code, etc.)
+3. **Add tool instructions** to your agent templates:
+   - Use [tool-enabled templates](templates/tool-enabled/) with instructions pre-included
+   - Or append from [individual tool docs](templates/tools/) to customize
+
+### Tool Instruction Files
+
+Detailed usage guides for each tool in [`templates/tools/`](templates/tools/):
+
+| File | Description |
+|------|-------------|
+| [ooda-mcp.md](templates/tools/ooda-mcp.md) | OODA loop pattern, file ops, CLI, CRUD, screeninput control |
+| [synch-mcp.md](templates/tools/synch-mcp.md) | Memory bank, context events, bug tracking |
+| [index-foundry-mcp.md](templates/tools/index-foundry-mcp.md) | RAG pipelines, vector search, deployment |
+| [arxiv-mcp.md](templates/tools/arxiv-mcp.md) | Paper search, category browsing, PDF extraction |
+| [trace-mcp.md](templates/tools/trace-mcp.md) | Schema extraction, mismatch detection, scaffolding |
+| [chatrpg-mcp.md](templates/tools/chatrpg-mcp.md) | Dice rolling, combat, character management |
+
+### Quick Start with Tools
+
+```bash
+# Clone an MCP tool
+git clone https://github.com/Mnehmos/mnehmos.ooda.mcp.git
+cd mnehmos.ooda.mcp
+npm install && npm run build
+
+# Add to your MCP client config (example for Claude Desktop)
+# %APPDATA%\Claude\claude_desktop_config.json
+{
+  "mcpServers": {
+    "ooda": {
+      "command": "node",
+      "args": ["/path/to/mnehmos.ooda.mcp/dist/index.js"]
+    }
+  }
+}
+```
 
 ## Requirements
 
@@ -96,6 +154,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ### Acknowledgments
 
-- [Prompt Engineering Sources](https://mnehmos.github.io/Prompt-Engineering/sources.html) (20+ research papers)
+- [Prompt Engineering Sources](https://mnehmos.github.io/mnehmos.prompts.research/) (20+ research papers)
 - Vincent Shing Hin Chong — [Language Construct Modeling](https://osf.io/q6cyp/)
 - Multi-agent AI research community
