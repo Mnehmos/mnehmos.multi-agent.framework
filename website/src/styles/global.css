@@ -35,41 +35,171 @@ html {
   outline-offset: 2px;
 }
 
-/* Buy Me a Coffee button with high contrast and animation */
+/* ============================================
+   Buy Me a Coffee - High Contrast & Animations
+   ============================================ */
+
+/* Color variables for BMC elements */
+:root {
+  --bmc-gold: #FFD93D;
+  --bmc-gold-light: #FFE566;
+  --bmc-amber: #FFC107;
+  --bmc-orange: #FF9500;
+  --bmc-glow: rgba(255, 217, 61, 0.6);
+  --bmc-glow-strong: rgba(255, 217, 61, 0.9);
+}
+
+/* Main BMC Button - High Contrast */
 .bmc-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.625rem;
+  font-weight: 700;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
-  color: #FAFAF9;
-  border: 1px solid #44403C;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--bmc-gold) 0%, var(--bmc-amber) 50%, var(--bmc-orange) 100%);
+  color: #1C1917;
+  border: 2px solid var(--bmc-gold-light);
+  box-shadow:
+    0 4px 15px rgba(255, 193, 7, 0.4),
+    0 0 20px rgba(255, 217, 61, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: bmc-glow-pulse 2s ease-in-out infinite;
+}
+
+.bmc-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: bmc-shimmer 3s ease-in-out infinite;
 }
 
 .bmc-button:hover {
-  background: linear-gradient(135deg, #292524 0%, #3D3834 100%);
-  border-color: #B87333;
-  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.3);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--bmc-gold-light) 0%, var(--bmc-gold) 50%, var(--bmc-amber) 100%);
+  border-color: #FFF;
+  box-shadow:
+    0 6px 25px rgba(255, 193, 7, 0.6),
+    0 0 35px rgba(255, 217, 61, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.bmc-button:active {
+  transform: translateY(-1px) scale(1);
 }
 
 .bmc-button .bmc-icon {
-  animation: coffee-steam 2s ease-in-out infinite;
+  display: inline-block;
+  font-size: 1.25em;
+  animation: bmc-coffee-wiggle 1.5s ease-in-out infinite;
 }
 
-@keyframes coffee-steam {
+/* Footer link variant */
+.bmc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: var(--bmc-gold) !important;
+  background: rgba(255, 217, 61, 0.1);
+  border: 1px solid rgba(255, 217, 61, 0.3);
+  transition: all 0.3s ease;
+  animation: bmc-footer-glow 2.5s ease-in-out infinite;
+}
+
+.bmc-link:hover {
+  color: #FFF !important;
+  background: rgba(255, 217, 61, 0.2);
+  border-color: var(--bmc-gold);
+  box-shadow:
+    0 0 15px rgba(255, 217, 61, 0.4),
+    0 0 30px rgba(255, 217, 61, 0.2);
+  transform: translateY(-2px);
+}
+
+.bmc-link .bmc-icon {
+  display: inline-block;
+  animation: bmc-coffee-bounce 1s ease-in-out infinite;
+}
+
+/* ============================================
+   BMC Keyframe Animations
+   ============================================ */
+
+/* Glow pulse for main button */
+@keyframes bmc-glow-pulse {
   0%, 100% {
-    transform: translateY(0);
-    opacity: 1;
+    box-shadow:
+      0 4px 15px rgba(255, 193, 7, 0.4),
+      0 0 20px rgba(255, 217, 61, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   50% {
-    transform: translateY(-2px);
-    opacity: 0.9;
+    box-shadow:
+      0 4px 20px rgba(255, 193, 7, 0.6),
+      0 0 35px rgba(255, 217, 61, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Shimmer effect across button */
+@keyframes bmc-shimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+/* Coffee cup wiggle */
+@keyframes bmc-coffee-wiggle {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-8deg) translateY(-2px);
+  }
+  75% {
+    transform: rotate(8deg) translateY(-2px);
+  }
+}
+
+/* Coffee cup bounce for footer */
+@keyframes bmc-coffee-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Subtle glow for footer link */
+@keyframes bmc-footer-glow {
+  0%, 100% {
+    background: rgba(255, 217, 61, 0.08);
+    border-color: rgba(255, 217, 61, 0.25);
+  }
+  50% {
+    background: rgba(255, 217, 61, 0.15);
+    border-color: rgba(255, 217, 61, 0.45);
   }
 }
 
