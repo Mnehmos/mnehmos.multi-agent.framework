@@ -1,198 +1,183 @@
-# OODA MCP Tool Instructions
+# Somatic Layer: OODA MCP Integration
 
-> Full computer control with OODA loop pattern (Observe-Orient-Decide-Act)
+> **Tier 2 Appendix** | Add to baseline instructions when OODA MCP is installed.
+> Provides: 62 tools for complete computer automation following Observe-Orient-Decide-Act.
 
-## Overview
+---
 
-The OODA MCP provides 62 tools for complete computer automation. Use these tools to interact with the filesystem, execute commands, control input devices, manage windows, and observe screen state.
+## The Somatic Nervous System
 
-**Security Note**: This server provides unrestricted system access. Use responsibly.
+If the LLM is the brain, OODA MCP is the **body**. It turns intent into action through:
+
+- **Direct I/O** (Reflexes): File operations, command execution
+- **Perception** (Senses): Screen capture, window awareness, file search
+- **Motor Control** (Hands): Keyboard, mouse, application control
+- **Proprioception** (Body Awareness): System info, process monitoring
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                          LLM (BRAIN)                                │
+│                    Cognition and Decision                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                      OODA MCP (BODY)                                │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐│
+│  │   OBSERVE   │  │   ORIENT    │  │   DECIDE    │  │     ACT     ││
+│  │ screenshot  │  │ search_in_  │  │   (LLM)     │  │ write_file  ││
+│  │ read_file   │  │   file      │  │  reasoning  │  │ keyboard_*  ││
+│  │ list_*      │  │ batch_      │  │             │  │ mouse_*     ││
+│  └─────────────┘  │ search      │  │             │  │ exec_cli    ││
+│                   └─────────────┘  └─────────────┘  └─────────────┘│
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
 
 ## Tool Categories
 
-### CLI & File Operations (17 tools)
+### Tier 1: Reflexes (Direct I/O)
 
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `exec_cli` | Execute shell commands | Running build commands, git operations, npm scripts |
-| `read_file` | Read file contents | Examining code, configs, logs (truncates at 500 lines) |
-| `read_file_lines` | Read specific line range | Large files - use `offset: -50` for last 50 lines |
-| `write_file` | Write content to file | Creating new files, full rewrites |
-| `str_replace` | Replace unique string | Surgical edits when string appears exactly once |
-| `edit_block` | Search/replace with fuzzy fallback | Targeted edits with preview support |
-| `apply_diff` | Multiple search/replace blocks | Atomic multi-edit operations |
-| `list_directory` | List directory contents | Exploring project structure |
-| `search_files` | Search by glob pattern | Finding files by name/extension |
-| `search_in_file` | Regex search within file | Finding code patterns, TODO comments |
-| `file_info` | Get file metadata | Checking file size, dates, type |
-| `copy_file` | Copy file/directory | Duplicating resources |
-| `move_file` | Move/rename file | Refactoring file structure |
-| `delete_file` | Delete file/directory | Cleanup operations |
-| `batch_*` | Parallel versions | Multiple operations efficiently |
+| Tool | Purpose | Key Parameters |
+|------|---------|----------------|
+| `exec_cli` | Execute shell commands | `command`, `cwd` |
+| `read_file` | Read file contents | `path` |
+| `write_file` | Write content to file | `path`, `content` |
+| `str_replace` | Replace unique string | `path`, `oldText`, `newText` |
+| `edit_block` | Search/replace with fuzzy fallback | `path`, `search`, `replace`, `dryRun` |
+| `apply_diff` | Multiple search/replace atomically | `path`, `diffs[]`, `dryRun` |
+| `list_directory` | List directory contents | `path` |
+| `copy_file` | Copy file/directory | `source`, `destination` |
+| `move_file` | Move/rename file | `source`, `destination` |
+| `delete_file` | Delete file/directory | `path`, `recursive` |
 
-**Best Practices:**
-- Prefer `read_file_lines` over `read_file` for large files
-- Use `edit_block` with `dryRun: true` to preview changes
-- Use `apply_diff` for multiple related edits in one atomic operation
-- Batch operations return structured results with success/failure per item
+### Tier 2: Senses (Perception)
 
-### CRUD Database (9 tools)
+| Tool | Purpose | Key Parameters |
+|------|---------|----------------|
+| `search_files` | Find files by pattern | `directory`, `pattern`, `recursive` |
+| `search_in_file` | Search within a file | `path`, `pattern`, `contextLines`, `isRegex`, `isFuzzy` |
+| `read_file_lines` | Read specific line range | `path`, `startLine`, `endLine`, `offset` |
+| `file_info` | Get file metadata | `path` |
+| `screenshot` | Capture screen | `region`, `format`, `savePath` |
+| `get_screen_info` | Monitor information | (none) |
+| `get_active_window` | Current window info | (none) |
+| `list_windows` | All open windows | (none) |
 
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `crud_create` | Create record in collection | Storing session state, caching data |
-| `crud_read` | Read record by ID | Retrieving stored data |
-| `crud_update` | Update existing record | Modifying cached state |
-| `crud_delete` | Delete record | Cleanup |
-| `crud_query` | Query with filters | Searching stored data |
-| `crud_batch_*` | Parallel versions | Bulk operations |
+### Tier 3: Motor Control (Action)
 
-**Best Practices:**
-- Use collections to organize data logically (e.g., "session", "cache", "tasks")
-- Store intermediate results for long-running workflows
-- Query with filters to avoid loading unnecessary data
+| Tool | Purpose | Key Parameters |
+|------|---------|----------------|
+| `keyboard_type` | Type text | `text`, `delay` |
+| `keyboard_press` | Press key with modifiers | `key`, `modifiers[]` |
+| `keyboard_shortcut` | Execute shortcut | `shortcut` (e.g., "ctrl+c") |
+| `mouse_move` | Move cursor | `x`, `y`, `smooth`, `duration` |
+| `mouse_click` | Click mouse button | `x`, `y`, `button`, `clicks` |
+| `mouse_drag` | Drag operation | `startX`, `startY`, `endX`, `endY` |
+| `focus_window` | Bring window to front | `title` or `pid` |
+| `launch_application` | Open application | `path`, `args[]`, `waitForWindow` |
 
-### Screen Operations (4 tools)
+### Tier 4: Batch Operations
 
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `screenshot` | Capture screen/region | Observing UI state, debugging visual issues |
-| `get_screen_info` | Display/monitor info | Understanding screen layout |
-| `wait_for_screen_change` | Wait for UI update | Automation after triggering action |
-| `find_on_screen` | Find text/image (OCR) | Locating UI elements |
+| Tool | Purpose | Key Parameters |
+|------|---------|----------------|
+| `batch_read_files` | Read multiple files | `paths[]` |
+| `batch_write_files` | Write multiple files | `files[{path, content}]` |
+| `batch_exec_cli` | Execute multiple commands | `commands[{command, cwd}]` |
+| `batch_str_replace` | Replace in multiple files | `replacements[]`, `replaceAll` |
+| `batch_search_in_files` | Search across files | `searches[]`, `isFuzzy`, `fuzzyThreshold` |
 
-**Best Practices:**
-- Use `region` parameter to capture only relevant areas (reduces token usage)
-- `wait_for_screen_change` is useful after clicking buttons that trigger loading
-- Consider `find_on_screen` for dynamic UI element location
-
-### Input Operations (10 tools)
-
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `keyboard_type` | Type text | Filling forms, writing content |
-| `keyboard_press` | Press key with modifiers | Enter, Tab, Escape, function keys |
-| `keyboard_shortcut` | Execute shortcut | Ctrl+S, Alt+Tab, Ctrl+Shift+P |
-| `mouse_move` | Move cursor | Positioning for clicks |
-| `mouse_click` | Click at position | Interacting with UI |
-| `mouse_drag` | Drag between points | Moving items, selecting |
-| `mouse_scroll` | Scroll wheel | Navigating content |
-| `get_mouse_position` | Current cursor position | Debugging, relative positioning |
-| `batch_keyboard_actions` | Sequence of keyboard actions | Complex input workflows |
-| `batch_mouse_actions` | Sequence of mouse actions | Complex mouse workflows |
-
-**Best Practices:**
-- Use `batch_*_actions` for sequences instead of individual calls
-- Include `wait` actions between steps for UI to respond
-- Prefer `keyboard_shortcut` over separate modifier+key presses
-
-### Window Operations (10 tools)
-
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `list_windows` | All open windows | Finding target application |
-| `get_active_window` | Currently focused window | Verifying focus |
-| `focus_window` | Bring window to front | Switching applications |
-| `minimize_window` | Minimize window(s) | Clearing desktop |
-| `maximize_window` | Maximize window | Full screen work |
-| `restore_window` | Restore from min/max | Normal window state |
-| `close_window` | Close window | Cleanup |
-| `resize_window` | Resize window | Layout adjustment |
-| `move_window` | Move window position | Multi-monitor setup |
-| `launch_application` | Start application | Opening tools |
-
-**Best Practices:**
-- Use `list_windows` to find window by title before `focus_window`
-- `launch_application` can wait for window to appear with `waitForWindow: true`
-- Use partial title matches for flexibility
-
-### Clipboard Operations (4 tools)
-
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `clipboard_read` | Read text/HTML/image | Getting copied content |
-| `clipboard_write` | Write text/HTML | Preparing paste content |
-| `clipboard_clear` | Clear clipboard | Security/cleanup |
-| `clipboard_has_format` | Check format availability | Before reading |
-
-### System Operations (8 tools)
-
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
-| `get_system_info` | OS, CPU, memory, uptime | Environment understanding |
-| `list_processes` | Running processes | Finding/monitoring apps |
-| `kill_process` | Kill by PID or name | Stopping hung processes |
-| `get_environment` | Environment variables | Checking config |
-| `set_environment` | Set environment variable | Configuring runtime |
-| `get_network_info` | Network interfaces | Connectivity debugging |
-| `wait` | Sleep for milliseconds | Pacing automation |
-| `notify` | System notification | User feedback |
+---
 
 ## OODA Loop Pattern
 
-Structure your automation workflows using the OODA loop:
-
-### 1. Observe
+### 1. OBSERVE 👁️
+```typescript
+screenshot({ format: "base64" })
+batch_read_files({ paths: ["src/auth/jwt.ts", "src/config.ts"] })
+list_directory({ path: "src/" })
 ```
-screenshot → get_screen_info → list_windows → clipboard_read
-```
-Gather information about the current system state.
 
-### 2. Orient
-```
-crud_query → file_info → search_files → list_processes
-```
-Process observations, retrieve context, understand the situation.
+### 2. ORIENT 🧭
+```typescript
+search_in_file({
+  path: "src/auth/jwt.ts",
+  pattern: "validateToken",
+  contextLines: 5
+})
 
-### 3. Decide
-Internal reasoning based on observations and context. Use CRUD to persist decision state if needed.
-
-### 4. Act
+batch_search_in_files({
+  searches: [
+    { path: "src/**/*.ts", pattern: "JWT" },
+    { path: "src/**/*.ts", pattern: "token" }
+  ],
+  isFuzzy: true,
+  fuzzyThreshold: 0.7
+})
 ```
-keyboard_type → mouse_click → exec_cli → write_file
+
+### 3. DECIDE 🎯
+LLM reasons over observed data to determine action.
+
+### 4. ACT ⚡
+```typescript
+edit_block({
+  path: "src/auth/jwt.ts",
+  search: "const secret = process.env.JWT_SECRET",
+  replace: "const secret = process.env.JWT_SECRET ?? 'development-secret'",
+  dryRun: false
+})
 ```
-Execute the decided action.
 
-### 5. Loop
-Return to Observe to verify the action's effect.
+### 5. LOOP 🔄
+```typescript
+exec_cli({ command: "npm test -- auth" })
+```
 
-## Example Workflow
+---
+
+## Key Patterns
+
+### Emergent RAG (File System as Knowledge Base)
+
+```
+DISCOVER: list_directory, search_files
+LOCATE:   search_in_file, batch_search_in_files  
+EXTRACT:  read_file_lines (surgical)
+BATCH:    Parallelize all of the above
+```
+
+The LLM IS the similarity function—reasoning replaces embeddings.
+
+### Preview Before Apply
 
 ```typescript
-// 1. OBSERVE: Check current state
-const windows = await list_windows();
-const targetWindow = windows.find(w => w.title.includes("VS Code"));
-
-// 2. ORIENT: Focus and prepare
-await focus_window({ title: "VS Code" });
-await wait({ ms: 500 });
-
-// 3. DECIDE: Determine action (internal reasoning)
-
-// 4. ACT: Execute command palette
-await keyboard_shortcut({ shortcut: "ctrl+shift+p" });
-await wait({ ms: 300 });
-await keyboard_type({ text: "Format Document" });
-await keyboard_press({ key: "enter" });
-
-// 5. LOOP: Verify
-await wait({ ms: 1000 });
-const screenshot = await screenshot({ format: "base64" });
-// Analyze screenshot to confirm action completed
+edit_block({ path, search, replace, dryRun: true })  // Preview
+edit_block({ path, search, replace, dryRun: false }) // Apply
 ```
 
-## Integration with Framework
+### Fuzzy Matching for LLM Tolerance
 
-When using OODA MCP with the Multi-Agent Framework:
+```typescript
+search_in_file({
+  path: "src/auth/session.ts",
+  pattern: "autentication",  // Typo
+  isFuzzy: true,
+  fuzzyThreshold: 0.7
+})
+```
 
-- **Orchestrator**: Can use OODA tools for observation and system queries
-- **Code Mode**: Primary user of file operations and CLI execution
-- **Debug Mode**: Use screenshot and process tools for diagnostics
-- **All Modes**: Respect workspace_path and file_patterns constraints when using file tools
+---
 
-## Constraints
+## Installation
 
-- MUST NOT use OODA tools to bypass framework security constraints
-- MUST use file tools within assigned workspace_path
-- SHOULD prefer batch operations for efficiency
-- SHOULD use dryRun/preview modes before destructive operations
+```json
+{
+  "mcpServers": {
+    "ooda": {
+      "command": "node",
+      "args": ["path/to/mnehmos.ooda.mcp/dist/index.js"]
+    }
+  }
+}
+```
+
+**GitHub**: [github.com/Mnehmos/mnehmos.ooda.mcp](https://github.com/Mnehmos/mnehmos.ooda.mcp)
