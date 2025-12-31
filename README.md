@@ -6,6 +6,21 @@ A biological architecture for artificial minds. Sensation, reflex, memory, and a
 
 🌐 **Website**: [mnehmos.github.io/mnehmos.multi-agent.framework](https://mnehmos.github.io/mnehmos.multi-agent.framework)
 
+📖 **Blog Post**: [From Chatbot to Organism](https://mnehmos.github.io/blog/from-chatbot-to-organism)
+
+---
+
+## MCP Ecosystem
+
+| Server | Layer | Description |
+|--------|-------|-------------|
+| [![OODA MCP](https://img.shields.io/badge/🦾_OODA_MCP-Somatic-f59e0b)](https://github.com/Mnehmos/mnehmos.ooda.mcp) | Somatic | 62 tools for computer automation: files, screen, keyboard, mouse, batch ops |
+| [![Synch MCP](https://img.shields.io/badge/💭_Synch_MCP-Autonomic-3b82f6)](https://github.com/Mnehmos/mnehmos.synch.mcp) | Autonomic | Memory persistence, agent handoff, file locks, bug tracking |
+| [![Index Foundry](https://img.shields.io/badge/📚_Index_Foundry-Autonomic-3b82f6)](https://github.com/Mnehmos/mnehmos.index-foundry.mcp) | Autonomic | RAG pipelines, document Q&A, semantic search |
+| [![Trace MCP](https://img.shields.io/badge/⚡_Trace_MCP-Reflex-ef4444)](https://github.com/Mnehmos/mnehmos.trace.mcp) | Reflex | Schema validation, contract enforcement, type scaffolding |
+| [![arXiv MCP](https://img.shields.io/badge/📄_arXiv_MCP-Central-a855f7)](https://github.com/Mnehmos/mnehmos.arxiv.mcp) | Central | Academic paper search for Deep Research mode |
+| [![ChatRPG](https://img.shields.io/badge/🎮_ChatRPG-Game-10b981)](https://github.com/Mnehmos/mnehmos.chatrpg.game) | Game Engine | D&D 5e combat, characters, encounters |
+
 ---
 
 ## The Architecture
