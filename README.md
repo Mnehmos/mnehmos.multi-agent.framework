@@ -60,20 +60,24 @@ cp templates/custom_modes.yaml .roo/
 cp templates/universal/AGENTS.md .
 ```
 
+**Files to copy:**
+- [`templates/custom_modes.yaml`](templates/custom_modes.yaml) → `.roo/custom_modes.yaml`
+- [`templates/universal/AGENTS.md`](templates/universal/AGENTS.md) → `AGENTS.md` (project root)
+
 ### 2. Add global instructions
 
-Copy `templates/custom-instructions-for-all-modes.md` content to your IDE's global instructions field.
+Copy [`templates/custom-instructions-for-all-modes.md`](templates/custom-instructions-for-all-modes.md) content to your IDE's global instructions field.
 
 ### 3. (Optional) Add MCP tools
 
-Install tools to extend capabilities:
+Install tools to extend capabilities. See [`templates/tools/`](templates/tools/) for integration docs:
 
-| Tier | Tool | Layer | Capability |
-|------|------|-------|------------|
-| 2 | [OODA MCP](https://github.com/Mnehmos/mnehmos.ooda.mcp) | Somatic | 62 tools for computer automation |
-| 3 | [Synch MCP](https://github.com/Mnehmos/mnehmos.synch.mcp) | Autonomic | Memory persistence, agent handoff |
-| 3 | [Index Foundry](https://github.com/Mnehmos/mnehmos.index-foundry.mcp) | Autonomic | RAG pipelines, document Q&A |
-| 4 | [Trace MCP](https://github.com/Mnehmos/mnehmos.trace.mcp) | Reflex | Schema validation, contract enforcement |
+| Tier | Tool | Layer | Integration Guide |
+|------|------|-------|-------------------|
+| 2 | [OODA MCP](https://github.com/Mnehmos/mnehmos.ooda.mcp) | Somatic | [`ooda-mcp.md`](templates/tools/ooda-mcp.md) |
+| 3 | [Synch MCP](https://github.com/Mnehmos/mnehmos.synch.mcp) | Autonomic | [`synch-mcp.md`](templates/tools/synch-mcp.md) |
+| 3 | [Index Foundry](https://github.com/Mnehmos/mnehmos.index-foundry.mcp) | Autonomic | [`index-foundry-mcp.md`](templates/tools/index-foundry-mcp.md) |
+| 4 | [Trace MCP](https://github.com/Mnehmos/mnehmos.trace.mcp) | Reflex | [`trace-mcp.md`](templates/tools/trace-mcp.md) |
 
 ---
 
@@ -174,24 +178,16 @@ Templates for every major AI-assisted IDE:
 
 ## File Structure
 
-```
-templates/
-├── custom_modes.yaml              # Mode definitions
-├── custom-instructions-for-all-modes.md  # Global contracts
-├── universal/
-│   └── AGENTS.md                  # Universal agent contract
-├── tool-enabled/
-│   ├── custom-instructions-with-tools.md
-│   └── README.md
-├── tools/
-│   ├── ooda-mcp.md               # Somatic layer
-│   ├── synch-mcp.md              # Autonomic layer
-│   ├── index-foundry-mcp.md      # Autonomic layer
-│   └── trace-mcp.md              # Reflex layer
-├── claude-code/
-├── copilot/
-└── cursor/
-```
+| Path | Description |
+|------|-------------|
+| [`templates/custom_modes.yaml`](templates/custom_modes.yaml) | Mode definitions (13 modes with layer mappings) |
+| [`templates/custom-instructions-for-all-modes.md`](templates/custom-instructions-for-all-modes.md) | Global contracts (paste into IDE) |
+| [`templates/universal/AGENTS.md`](templates/universal/AGENTS.md) | Universal agent contract (OODA + TDD + Scope) |
+| **Tool Integration** | |
+| [`templates/tools/ooda-mcp.md`](templates/tools/ooda-mcp.md) | OODA MCP integration (Somatic layer) |
+| [`templates/tools/synch-mcp.md`](templates/tools/synch-mcp.md) | Synch MCP integration (Autonomic layer) |
+| [`templates/tools/index-foundry-mcp.md`](templates/tools/index-foundry-mcp.md) | Index Foundry integration (Autonomic layer) |
+| [`templates/tools/trace-mcp.md`](templates/tools/trace-mcp.md) | Trace MCP integration (Reflex layer) |
 
 ---
 
