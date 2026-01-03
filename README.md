@@ -6,7 +6,7 @@ A biological architecture for artificial minds. Sensation, reflex, memory, and a
 
 🌐 **Website**: UNDER CONSTRUCTION! [mnehmos.github.io/mnehmos.multi-agent.framework](https://mnehmos.github.io/mnehmos.multi-agent.framework)
 
-📖 **Blog Post**: COMING SOON! [From Chatbot to Organism](https://mnehmos.github.io/blog/from-chatbot-to-organism)
+📖 **Blog Post**: [From Chatbot to Organism](https://mnehmos.github.io/Mnehmos/blog/from-chatbot-to-organism/)
 
 ---
 
