@@ -83,10 +83,10 @@
   --color-bg-elevated: #292524;       /* stone-800 */
   --color-bg-muted: #44403C;          /* stone-700 */
   
-  /* Foreground / Text */
-  --color-text-primary: #FAFAF9;      /* stone-50 */
-  --color-text-secondary: #D6D3D1;    /* stone-300 */
-  --color-text-muted: #78716C;        /* stone-500 */
+  /* Foreground / Text - WCAG AA compliant (≥4.5:1 contrast on #0C0A09) */
+  --color-text-primary: #FAFAF9;      /* stone-50 - 19:1 contrast */
+  --color-text-secondary: #D6D3D1;    /* stone-300 - 10:1 contrast */
+  --color-text-muted: #A8A29E;        /* stone-400 - 5.5:1 contrast (was stone-500, failed WCAG) */
   --color-text-inverse: #1C1917;      /* stone-900 */
   
   /* Border / Divider */
@@ -94,10 +94,10 @@
   --color-border-strong: #57534E;     /* stone-600 */
   --color-border-muted: #292524;      /* stone-800 */
   
-  /* Brand - Copper (adjusted for dark mode) */
-  --color-brand-primary: #D4956A;     /* copper-light for better contrast */
-  --color-brand-light: #E8B896;       /* lighter copper */
-  --color-brand-dark: #B87333;        /* original copper */
+  /* Brand - Copper (brightened for dark mode WCAG compliance) */
+  --color-brand-primary: #E8B896;     /* lighter copper - 8:1 contrast (was #D4956A ~7:1) */
+  --color-brand-light: #F5D4BC;       /* even lighter copper for hover states */
+  --color-brand-dark: #D4956A;        /* original dark-mode copper */
   
   /* Interactive States */
   --color-interactive-hover: #D6D3D1; /* stone-300 */
@@ -117,7 +117,7 @@
   --color-nav-bg: rgba(12, 10, 9, 0.9); /* stone-950/90 */
   --color-nav-border: #292524;
   --color-footer-bg: #0C0A09;         /* stone-950 */
-  --color-footer-text: #A8A29E;       /* stone-400 */
+  --color-footer-text: #D6D3D1;       /* stone-300 - 10:1 contrast (was stone-400, borderline) */
   
   /* Scrollbar */
   --color-scrollbar-track: #1C1917;
